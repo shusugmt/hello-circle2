@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM ubuntu:trusty
 
 RUN touch 1
 RUN touch 1.5
