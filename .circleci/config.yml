@@ -11,11 +11,11 @@ jobs:
       - run: docker pull shusugmt/hello-circle2:0.0.1-latest || true
       - run: >-
           docker build --cache-from shusugmt/hello-circle2:0.0.1-latest
-          -t shusugmt/hello-circle2:0.0.1-${CIRCLE_SHA1}
+          -t shusugmt/hello-circle2:0.0.1-${CIRCLE_SHA1:0:7}
           -t shusugmt/hello-circle2:0.0.1-build${CIRCLE_BUILD_NUM}
           -t shusugmt/hello-circle2:0.0.1-latest
           ./
       - run: |
-          docker push shusugmt/hello-circle2:0.0.1-${CIRCLE_SHA1}
+          docker push shusugmt/hello-circle2:0.0.1-${CIRCLE_SHA1:0:7}
           docker push shusugmt/hello-circle2:0.0.1-build${CIRCLE_BUILD_NUM}
           docker push shusugmt/hello-circle2:0.0.1-latest
