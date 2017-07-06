@@ -9,5 +9,5 @@ jobs:
       - setup_remote_docker
       - run: docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
       - run: docker pull shusugmt/hello-circle2:latest
-      - run: docker build --cache-from shusugmt/hello-circle2:latest -t shusugmt/hello-circle2:latst .
+      - run: docker build --cache-from shusugmt/hello-circle2:latest -t shusugmt/hello-circle2:latest .
       - run: docker push shusugmt/hello-circle2:latest
