@@ -8,6 +8,14 @@ jobs:
       - checkout
       - setup_remote_docker
       - run: docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
-      - run: docker pull shusugmt/hello-circle2:latest
-      - run: docker build --cache-from shusugmt/hello-circle2:latest -t shusugmt/hello-circle2:latest .
-      - run: docker push shusugmt/hello-circle2:latest
+      - run: docker pull shusugmt/hello-circle2:0.0.1-latest
+      - run: >-
+          docker build --cache-from shusugmt/hello-circle2:0.0.1-latest
+          -t shusugmt/hello-circle2:0.0.1-latest
+          -t shusugmt/hello-circle2:0.0.1-build${CIRCLE_BUILD_NUM}
+          -t shusugmt/hello-circle2:0.0.1-${CIRCLE_SHA1}
+          ./
+      - run: |
+          docker push shusugmt/hello-circle2:0.0.1-latest
+          docker push shusugmt/hello-circle2:0.0.1-build${CIRCLE_BUILD_NUM}
+          docker push shusugmt/hello-circle2:0.0.1-${CIRCLE_SHA1}
